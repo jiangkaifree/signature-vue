@@ -1,10 +1,18 @@
 <template>
   <div class="signature" @touchmove.prevent>
     <div class="boardBox" ref="boardBox">
-      <canvas ref="board" :width="cWidth" :height="cHeight" id="canvas" @touchstart="mStart" @touchmove="mMove" @touchend="mEnd"></canvas>
+      <canvas
+        ref="board"
+        :width="cWidth"
+        :height="cHeight"
+        id="canvas"
+        @touchstart="mStart"
+        @touchmove="mMove"
+        @touchend="mEnd"
+      ></canvas>
     </div>
     <div class="bar">
-     <!-- <div class="item" @click="goback">
+      <!-- <div class="item" @click="goback">
         <div class="ico">
           <img src="@/assets/img/goback.svg" alt srcset />
         </div>
@@ -27,10 +35,10 @@
 </template>
 <script>
 export default {
-  name: 'CanvasSign',
+  name: "CanvasSign",
   data() {
     return {
-      familysignatureurl:"",
+      familysignatureurl: "",
       basedata: "",
       ctx: null,
       point: {
@@ -38,8 +46,8 @@ export default {
         y: 0,
       },
       moving: false, // 是否正在绘制中且移动
-	cWidth: null,
-	cHeight: null,
+      cWidth: null,
+      cHeight: null,
     };
   },
   mounted() {
@@ -49,8 +57,8 @@ export default {
     this.ctx = board.getContext("2d"); // 二维绘图
     this.ctx.strokeStyle = "#000"; // 颜色
     this.ctx.lineWidth = 3; // 线条宽度
-	this.cWidth = document.documentElement.clientWidth;
-	this.cHeight = document.documentElement.clientHeight
+    this.cWidth = document.documentElement.clientWidth;
+    this.cHeight = document.documentElement.clientHeight;
   },
   methods: {
     // 触摸(开始)
@@ -91,7 +99,7 @@ export default {
         this.convertImg(file1);
       });
     },
-        //旋转图片
+    //旋转图片
     convertImg(file) {
       let _this = this;
       var canvas1 = document.createElement("canvas");
@@ -174,7 +182,7 @@ export default {
         type: fileType,
       });
     },
-       //上传图片
+    //上传图片
     async updatavue() {
       //转成file文件
       // let blobObj = this.base64ToBlob(this.basedata);
@@ -184,12 +192,16 @@ export default {
       // });
       // console.log(file)
       //此处为发送请求给后台获取图片路径
-      await this.$Axios.post("hand_sign/hand_img_upload",{
-        verifyId: '111111',
-        handImg: this.basedata
-      }).then(res => {
-        console.log(res)
-      })
+      let data = {
+        code: "hand_sign/hand_img_upload",
+        data: JSON.stringify({
+          verifyId: "18668011733",
+          handImg: this.basedata,
+        }),
+      };
+      await this.$Axios.post("hand_sign/hand_img_upload", data).then((res) => {
+        console.log(res);
+      });
       // let res = await upload(file);
       // this.familysignatureurl=res.details.data.filePath
       // console.log(this.familysignatureurl);//此处打印的为绘画的图片url
@@ -197,29 +209,26 @@ export default {
     //清除画布
     clearcanvas() {
       var ctx = document.getElementById("canvas").getContext("2d");
-    //  c.getContext("2d");
-     ctx.setTransform(1, 0, 0, 1, 0, 0);
-			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      //  c.getContext("2d");
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       // c.height = c.height;
       this.ctx.lineWidth = 3;
     },
-       
   },
 };
-
 </script>
 <style lang="less" scoped>
 .item {
   // -webkit-transform: rotate(-90deg);
-  padding:  1rem;
+  padding: 1rem;
   font-size: 14px;
-background: #20a0ff;
-box-shadow: 8px 0 8px rgba(0,0,0,.4);
+  background: #20a0ff;
+  box-shadow: 8px 0 8px rgba(0, 0, 0, 0.4);
 
-
-  transform:rotate(-90deg);
+  transform: rotate(-90deg);
 }
-#canvas{
+#canvas {
   // border: 1px solid #f6fafd;
   // background-color: #fff;
   background-color: #f6fafd;
@@ -241,8 +250,8 @@ box-shadow: 8px 0 8px rgba(0,0,0,.4);
   padding: 0rem 1rem;
   position: fixed;
   display: flex;
-  bottom: -0.2rem;
-  
+  bottom: 0;
+
   width: 100vw;
   height: 10vh;
   // background-color: #ffffff;
