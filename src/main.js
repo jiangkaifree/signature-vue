@@ -1,14 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
 import Axios from 'axios'
-import Fingerprint2 from "fingerprintjs2";
+import Fingerprint2 from "fingerprintjs2"
 
 
-
+// 请求头加入浏览器指纹 确保唯一性
 Fingerprint2.get(components => {
      const values = components.map(component => component.value);
      const murmur = Fingerprint2.x64hash128(values.join(""), 31);
-     console.log(murmur,'murmur')
 // Vue.prototype.Agent = murmur;
 Axios.defaults.headers.common['Agent'] =  murmur     // 加入AcCode
     //  return murmur
