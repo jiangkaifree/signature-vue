@@ -57,7 +57,7 @@
 }
 .success{
   border-left: 10px solid #90caf9;
-  background-color:#2196f3;
+  background-color: #20a0ff;
 
 }
 .error{
