@@ -60,4 +60,3 @@ function register() {
   vue.prototype.$myMsg = myMsg;
 }
 export default register;
-

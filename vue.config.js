@@ -1,5 +1,7 @@
 module.exports = {
     publicPath: './',
+    
+    // publicPath: 'write-sign',
     devServer: {
         // overlay: { // 让浏览器 overlay 同时显示警告和错误
         //   warnings: true,
