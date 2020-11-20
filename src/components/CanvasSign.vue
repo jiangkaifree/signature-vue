@@ -88,10 +88,29 @@ export default {
         this.moving = false; // 关闭绘制开关
       }
     },
+
+    // 判断为空
+    isCanvasEmpty(canvas) {
+      var blank = document.createElement("canvas"); //系统获取一个空canvas对象
+      blank.width = canvas.width;
+      blank.height = canvas.height;
+      return canvas.toDataURL() == blank.toDataURL(); //比较值相等则为空
+    },
+
+    //获取绘画图片
     getcanvas() {
       //绘画转图片
-      document.getElementById("canvas").toDataURL("image/png");
-      // document.getElementById("canvas").getContext("2d").gloabalAlpha = 0;
+      // let canvas =  document.getElementById("canvas").toDataURL("image/png");
+      let canvas = document.getElementById("canvas");
+      if (this.isCanvasEmpty(canvas)) {
+        // alert("请绘制签名后再上传！");
+        this.$myMsg.notify({
+          content: "请绘制签名后再上传！",
+          type: "error",
+          //time: 5500
+        });
+        return;
+      }
 
       document.getElementById("canvas").toBlob(async (blobObj) => {
         var file1 = new File([blobObj], "pic.png", {
@@ -108,10 +127,10 @@ export default {
       var context1 = canvas1.getContext("2d");
       var oReader = new FileReader();
       oReader.readAsDataURL(file);
-      oReader.onload = function (e) {
+      oReader.onload = function(e) {
         var img = new Image();
         img.src = e.target.result;
-        img.onload = function () {
+        img.onload = function() {
           // 图片原始尺寸
           var originWidth = this.width;
           var originHeight = this.height;
@@ -203,6 +222,11 @@ export default {
       };
       await this.$Axios.post("hand_sign/hand_img_upload", data).then((res) => {
         console.log(res);
+        this.$myMsg.notify({
+          content: "签名成功",
+          type: "success",
+          //time: 5500
+        });
       });
       // let res = await upload(file);
       // this.familysignatureurl=res.details.data.filePath
@@ -216,6 +240,10 @@ export default {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       // c.height = c.height;
       this.ctx.lineWidth = 3;
+      this.$myMsg.notify({
+        content: "画板已清空，请重新签名",
+        type: "success",
+      });
     },
   },
 };
