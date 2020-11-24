@@ -8,7 +8,7 @@ const notify = vue.extend(Toast);
 let notifyWrap = document.createElement("div");
 notifyWrap.className = "notify-wrap";
 notifyWrap.style =
-  "position: fixed; right: 0px;left：0; top: 90px; transition-duration: .5s;";
+  "position: fixed; left：0; top: 0; transition-duration: .5s;";
 document.body.appendChild(notifyWrap);
 
 let myMsg = {

@@ -18,13 +18,25 @@
         </div>
         <div class="text">退出</div>
       </div> -->
-      <div class="item" @click="clearcanvas">
+      <div
+        class="item"
+        @click="clearcanvas"
+        :style="
+          noRotate ? 'transform: rotate(0);' : 'transform: rotate(-90deg);'
+        "
+      >
         <div class="ico">
           <!-- <img src="@/assets/img/clear.svg" alt srcset /> -->
         </div>
         <div class="text">重写</div>
       </div>
-      <div class="item" @click="getcanvas">
+      <div
+        class="item"
+        @click="getcanvas"
+        :style="
+          noRotate ? 'transform: rotate(0);' : 'transform: rotate(-90deg);'
+        "
+      >
         <div class="ico">
           <!-- <img src="@/assets/img/qm_sure.svg" alt srcset /> -->
         </div>
@@ -48,6 +60,7 @@ export default {
       moving: false, // 是否正在绘制中且移动
       cWidth: null,
       cHeight: null,
+      noRotate: null,
     };
   },
   mounted() {
@@ -56,11 +69,26 @@ export default {
     board.height = this.$refs.boardBox.offsetHeight; // 设置画布高
     this.ctx = board.getContext("2d"); // 二维绘图
     this.ctx.strokeStyle = "#000"; // 颜色
-    this.ctx.lineWidth = 3; // 线条宽度
     this.cWidth = document.documentElement.clientWidth;
     this.cHeight = document.documentElement.clientHeight;
+    window.addEventListener(
+      "onorientationchange" in window ? "orientationchange" : "resize",
+      this.hengshuping,
+      false
+    );
   },
   methods: {
+    hengshuping() {
+      if (window.orientation == 90 || window.orientation == -90) {
+        //横屏
+        // alert(document.documentElement.clientWidth,this.cWidth);
+        this.$forceUpdate()
+        this.noRotate = true;
+      } else {
+        //竖屏
+        this.noRotate = false;
+      }
+    },
     // 触摸(开始)
     mStart(e) {
       let x = e.touches[0].clientX - e.target.offsetLeft,
@@ -68,6 +96,7 @@ export default {
       this.point.x = x;
       this.point.y = y;
       this.ctx.beginPath();
+      this.ctx.lineWidth = 7; // 线条宽度
       this.moving = true;
     },
     // 滑动中...
@@ -127,10 +156,10 @@ export default {
       var context1 = canvas1.getContext("2d");
       var oReader = new FileReader();
       oReader.readAsDataURL(file);
-      oReader.onload = function(e) {
+      oReader.onload = function (e) {
         var img = new Image();
         img.src = e.target.result;
-        img.onload = function() {
+        img.onload = function () {
           // 图片原始尺寸
           var originWidth = this.width;
           var originHeight = this.height;
@@ -239,7 +268,7 @@ export default {
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       // c.height = c.height;
-      this.ctx.lineWidth = 3;
+      // this.ctx.lineWidth = 7;
       this.$myMsg.notify({
         content: "画板已清空，请重新签名",
         type: "success",
@@ -281,13 +310,14 @@ export default {
   padding: 0rem 1rem;
   position: fixed;
   display: flex;
-  // bottom: 0;
+  bottom: 0;
   width: 100vw;
-  height: 10vh;
+  // height: 15vh;
   // background-color: #ffffff;
   // background-color: #f6fafd;
   justify-content: space-around;
   align-items: center;
+  z-index: 9999;
 }
 // .shade {
 //   width: 100vw;
