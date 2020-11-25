@@ -78,14 +78,19 @@ export default {
     );
   },
   methods: {
+    //检查是否开启屏幕旋转
     hengshuping() {
       if (window.orientation == 90 || window.orientation == -90) {
         //横屏
         // alert(document.documentElement.clientWidth,this.cWidth);
+         this.cWidth = document.documentElement.clientWidth;
+    this.cHeight = document.documentElement.clientHeight;
         this.$forceUpdate()
         this.noRotate = true;
       } else {
         //竖屏
+         this.cWidth = document.documentElement.clientWidth;
+    this.cHeight = document.documentElement.clientHeight;
         this.noRotate = false;
       }
     },
@@ -267,12 +272,10 @@ export default {
       //  c.getContext("2d");
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-      // c.height = c.height;
-      // this.ctx.lineWidth = 7;
-      this.$myMsg.notify({
-        content: "画板已清空，请重新签名",
-        type: "success",
-      });
+      // this.$myMsg.notify({
+      //   content: "画板已清空，请重新签名",
+      //   type: "success",
+      // });
     },
   },
 };
