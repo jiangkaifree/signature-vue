@@ -283,7 +283,7 @@ export default {
 <style lang="less" scoped>
 .item {
   // -webkit-transform: rotate(-90deg);
-  width: 10%;
+  width: 15%;
   padding: 1rem;
   font-size: 14px;
   background: #20a0ff;
