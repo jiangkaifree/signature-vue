@@ -80,20 +80,18 @@ export default {
   methods: {
     // 判断横屏竖屏
     hengshuping() {
+      // alert('a')
       if (window.orientation == 90 || window.orientation == -90) {
         //横屏
-        // alert(document.documentElement.clientWidth,this.cWidth);
         this.$forceUpdate();
         this.noRotate = true;
         this.cWidth = document.documentElement.clientHeight;
-        this.cHeight = document.documentElement.clientWidth;
+        this.cHeight = document.documentElement.clientWidth; 
         console.log(this.cWidth, "横屏");
         console.log(this.cHeight);
         this.$forceUpdate();
       } else {
         //竖屏
-        this.cWidth = document.documentElement.clientWidth;
-        this.cHeight = document.documentElement.clientHeight;
         this.noRotate = false;
         this.cHeight = document.documentElement.clientWidth;
         this.cWidth = document.documentElement.clientHeight;
