@@ -78,15 +78,26 @@ export default {
     );
   },
   methods: {
+    // 判断横屏竖屏
     hengshuping() {
       if (window.orientation == 90 || window.orientation == -90) {
         //横屏
         // alert(document.documentElement.clientWidth,this.cWidth);
-        this.$forceUpdate()
+        this.$forceUpdate();
         this.noRotate = true;
+        this.cWidth = document.documentElement.clientHeight;
+        this.cHeight = document.documentElement.clientWidth;
+        console.log(this.cWidth,'横屏');
+        console.log(this.cHeight);
+        this.$forceUpdate();
       } else {
         //竖屏
         this.noRotate = false;
+        this.cHeight = document.documentElement.clientWidth;
+        this.cWidth = document.documentElement.clientHeight;
+        console.log(this.cWidth);
+        console.log(this.cHeight);
+        this.$forceUpdate();
       }
     },
     // 触摸(开始)
