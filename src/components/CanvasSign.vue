@@ -87,11 +87,13 @@ export default {
         this.noRotate = true;
         this.cWidth = document.documentElement.clientHeight;
         this.cHeight = document.documentElement.clientWidth;
-        console.log(this.cWidth,'横屏');
+        console.log(this.cWidth, "横屏");
         console.log(this.cHeight);
         this.$forceUpdate();
       } else {
         //竖屏
+        this.cWidth = document.documentElement.clientWidth;
+        this.cHeight = document.documentElement.clientHeight;
         this.noRotate = false;
         this.cHeight = document.documentElement.clientWidth;
         this.cWidth = document.documentElement.clientHeight;
@@ -278,12 +280,10 @@ export default {
       //  c.getContext("2d");
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-      // c.height = c.height;
-      // this.ctx.lineWidth = 7;
-      this.$myMsg.notify({
-        content: "画板已清空，请重新签名",
-        type: "success",
-      });
+      // this.$myMsg.notify({
+      //   content: "画板已清空，请重新签名",
+      //   type: "success",
+      // });
     },
   },
 };
@@ -291,7 +291,7 @@ export default {
 <style lang="less" scoped>
 .item {
   // -webkit-transform: rotate(-90deg);
-  width: 10%;
+  width: 15%;
   padding: 1rem;
   font-size: 14px;
   background: #20a0ff;
