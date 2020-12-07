@@ -1,17 +1,19 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <CanvasSign />
+    <!-- <CanvasSign /> -->
+    <Sign></Sign>
   </div>
 </template>
 
 <script>
-import CanvasSign from "./components/CanvasSign.vue";
+// import CanvasSign from "./components/CanvasSign.vue";
 
 export default {
   name: "App",
   components: {
-    CanvasSign,
+    // CanvasSign,
+    Sign: ()=> import('./components/Sign')
   },
   
 };

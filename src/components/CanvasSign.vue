@@ -198,23 +198,7 @@ export default {
           // (0,-imgHeight) 从旋转原理图那里获得的起始点
           // context.clearRect(0,  -targetHeight, targetWidth, targetHeight);
           context1.drawImage(img, 0, -targetHeight, targetWidth, targetHeight);
-          // 将canvas的透明背景设置成白色
-          // var imageData = context1.getImageData(
-          //   0,
-          //   0,
-          //   canvas1.width,
-          //   canvas1.height
-          // );
-          // for (var i = 0; i < imageData.data.length; i += 4) {
-          //   // 当该像素是透明的，则设置成白色
-          //   if (imageData.data[i + 3] == 0) {
-          //     imageData.data[i] = 255;
-          //     imageData.data[i + 1] = 255;
-          //     imageData.data[i + 2] = 255;
-          //     imageData.data[i + 3] = 255;
-          //   }
-          // }
-          // context1.putImageData(imageData, 0, 0);
+         
           var dataurl = canvas1.toDataURL(type);
           _this.basedata = dataurl;
           console.log(dataurl);

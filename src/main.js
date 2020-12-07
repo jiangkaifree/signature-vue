@@ -18,7 +18,7 @@ Fingerprint2.get((components) => {
 
 // 设置默认请求参数
 Axios.defaults.baseURL = "http://192.168.199.56:8088"; // 设置请求根地址
-// Axios.defaults.timeout = 3000       // 3000毫秒延时
+// Axios.defaults.timeout = 5000       // 3000毫秒延时
 Axios.defaults.headers.common["X-Token"] = "2e8126cae7094de0874476447500456a"; // 加入token
 Axios.defaults.headers.common["AcCode"] = "AC001"; // 加入AcCode
 
