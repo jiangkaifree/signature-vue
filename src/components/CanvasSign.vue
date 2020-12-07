@@ -78,20 +78,26 @@ export default {
     );
   },
   methods: {
-    //检查是否开启屏幕旋转
+    // 判断横屏竖屏
     hengshuping() {
+      // alert('a')
       if (window.orientation == 90 || window.orientation == -90) {
         //横屏
-        // alert(document.documentElement.clientWidth,this.cWidth);
-         this.cWidth = document.documentElement.clientWidth;
-    this.cHeight = document.documentElement.clientHeight;
-        this.$forceUpdate()
+        this.$forceUpdate();
         this.noRotate = true;
+        this.cWidth = document.documentElement.clientHeight;
+        this.cHeight = document.documentElement.clientWidth; 
+        console.log(this.cWidth, "横屏");
+        console.log(this.cHeight);
+        this.$forceUpdate();
       } else {
         //竖屏
-         this.cWidth = document.documentElement.clientWidth;
-    this.cHeight = document.documentElement.clientHeight;
         this.noRotate = false;
+        this.cHeight = document.documentElement.clientWidth;
+        this.cWidth = document.documentElement.clientHeight;
+        console.log(this.cWidth);
+        console.log(this.cHeight);
+        this.$forceUpdate();
       }
     },
     // 触摸(开始)
