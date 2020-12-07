@@ -158,6 +158,8 @@ export default {
 }
 .footer-bar {
   background-color: #f6fafd;
+  box-shadow: 0 4px 8px 0 rgba(7, 17, 27, 0.1);
+
 }
 .footer-bar div {
   padding: 0.6rem 1.5rem;
@@ -204,6 +206,7 @@ export default {
     /* padding: 0 0.4rem; */
     padding: 0 4rem;
     box-sizing: border-box;
+    box-shadow: 0px 0px 8px rgba(7, 17, 27, 0.1);
   }
   .footer-bar div {
     margin: 0.8rem 0;
