@@ -6,12 +6,12 @@ const notify = vue.extend(Toast);
 
 //添加通知节点(用来存放通知的元素)
 let notifyWrap = document.createElement("div");
-notifyWrap.className = "notify-wrap";
+// notifyWrap.className = "notify-wrap";
 notifyWrap.style =
   "position: fixed; left：0; top: 0; transition-duration: .5s;";
 document.body.appendChild(notifyWrap);
 
-let myMsg = {
+let Message = {
   /**
    * 通知框
    * @content 提示内容;
@@ -57,6 +57,6 @@ let myMsg = {
 
 //注册
 function register() {
-  vue.prototype.$myMsg = myMsg;
+  vue.prototype.$Message = Message;
 }
 export default register;

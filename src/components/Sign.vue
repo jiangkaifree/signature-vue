@@ -93,7 +93,7 @@ export default {
       let canvas = document.getElementById("canvas");
       if (this.isCanvasEmpty(canvas)) {
         // alert("请绘制签名后再上传！");
-        this.$myMsg.notify({
+        this.$Message.notify({
           content: "请绘制签名后再上传！",
           type: "error",
           //time: 5500
@@ -120,7 +120,7 @@ export default {
       };
       await this.$Axios.post("hand_sign/hand_img_upload", data).then((res) => {
         console.log(res);
-        this.$myMsg.notify({
+        this.$Message.notify({
           content: "签名成功",
           type: "success",
           //time: 5500
